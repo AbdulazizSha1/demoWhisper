@@ -1,0 +1,203 @@
+npm exec -- tailwindcss init -p
+:root {
+  --bg: #070a0f;
+  --card: rgba(255, 255, 255, 0.06);
+  --border: rgba(255, 255, 255, 0.12);
+  --text: rgba(255, 255, 255, 0.92);
+  --muted: rgba(255, 255, 255, 0.65);
+  --muted2: rgba(255, 255, 255, 0.45);
+  --glow: rgba(16, 185, 129, 0.35);
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background: var(--bg); color: var(--text); }
+
+.page {
+  min-height: 100vh;
+  width: 100vw;       
+  display: grid;
+  place-items: start center;
+  padding: 28px 16px;
+  position: relative;
+  overflow-x: hidden; 
+}
+
+
+.page::before,
+.page::after {
+  content: "";
+  position: absolute;
+  inset: -30%;
+  background: radial-gradient(600px 320px at 50% 15%, rgba(16,185,129,0.22), transparent 60%),
+              radial-gradient(650px 360px at 50% 85%, rgba(59,130,246,0.16), transparent 60%);
+  opacity: 0.9;
+  pointer-events: none;
+}
+
+.container {
+  width: 100%;
+  max-width: none;  
+  position: relative;
+}
+
+
+.header {
+  text-align: center;
+  margin-bottom: 26px;
+}
+
+.title {
+  font-size: clamp(28px, 4vw, 40px);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.subtitle {
+  margin-top: 10px;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.micWrap {
+  display: grid;
+  place-items: center;
+  margin: 28px 0 34px;
+}
+
+.micShell {
+  width: 124px;
+  height: 124px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid var(--border);
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,0.06),
+    0 26px 90px rgba(0,0,0,0.55);
+  display: grid;
+  place-items: center;
+  position: relative;
+}
+
+.micBtn {
+  width: 92px;
+  height: 92px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.14);
+  background: rgba(59,130,246,0.12);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: transform 140ms ease, background 140ms ease, opacity 140ms ease;
+}
+
+.micBtn:hover { background: rgba(59,130,246,0.16); }
+.micBtn:active { transform: scale(0.985); }
+.micBtn[disabled] { opacity: 0.55; cursor: not-allowed; }
+
+.micBtn.recording {
+  background: rgba(16,185,129,0.14);
+  border-color: rgba(16,185,129,0.26);
+}
+
+.micIcon {
+  width: 30px;
+  height: 30px;
+  opacity: 0.92;
+}
+
+.hint {
+  position: absolute;
+  bottom: -34px;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+@keyframes ripple {
+  0%   { transform: scale(0.86); opacity: 0.55; }
+  70%  { transform: scale(1.35); opacity: 0.14; }
+  100% { transform: scale(1.55); opacity: 0; }
+}
+
+.ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.30);
+  animation: ripple 1.6s ease-out infinite;
+  pointer-events: none;
+}
+
+.ring.delay1 { animation-delay: .25s; }
+.ring.delay2 { animation-delay: .5s; }
+
+.ring.speaking { border-color: rgba(255,255,255,0.42); opacity: 1; }
+
+.grid {
+  display: grid;
+  gap: 14px;
+}
+
+.card {
+  border: 1px solid var(--border);
+  background: var(--card);
+  border-radius: 18px;
+  padding: 16px;
+  backdrop-filter: blur(10px);
+}
+
+.cardTitleRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.cardTitle {
+  font-weight: 800;
+}
+
+.smallMeta {
+  font-size: 12px;
+  color: var(--muted2);
+}
+
+.box {
+  margin-top: 12px;
+  min-height: 96px;
+  padding: 14px;
+  border-radius: 14px;
+  background: rgba(0,0,0,0.22);
+  border: 1px solid rgba(255,255,255,0.06);
+  white-space: pre-wrap;
+  line-height: 1.8;
+  color: rgba(255,255,255,0.9);
+}
+
+.placeholder { color: rgba(255,255,255,0.45); }
+
+.error {
+  border: 1px solid rgba(248,113,113,0.35);
+  background: rgba(248,113,113,0.10);
+  color: rgba(254,226,226,0.95);
+}
+
+.audio { width: 100%; }
+
+.footerTip {
+  text-align: center;
+  margin-top: 16px;
+  font-size: 12px;
+  color: rgba(255,255,255,0.38);
+}
+
+.audioWrap {
+  display: flex;
+  justify-content: center;
+  margin-top: 8px;
+}
+
+.audio {
+  width: 260px;     
+  max-width: 90%;
+  height: 36px;
+}
